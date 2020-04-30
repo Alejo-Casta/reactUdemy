@@ -7,16 +7,26 @@ class App extends Component {
     persons: [
       { name: 'Alejandro', age: 24 },
       { name: 'Lina', age: 23 },
-      { name: 'Ramas', age: 24 }
+      { name: 'Teo', age: 24 }
     ]
   }
 
-  changeNameHandler = (friend, age) => {
+  changePersonsHandler = (friend, age) => {
     this.setState ({
       persons: [
-        { name: 'Alejandro', age: 24 },
-        { name: 'Lina', age: 23 },
+        { name: this.state.persons[0].name, age: this.state.persons[0].age },
+        { name: this.state.persons[1].name, age: this.state.persons[1].age },
         { name: friend, age }
+      ]
+    })
+  }
+
+  changeNameHandler = (e) => {
+    this.setState ({
+      persons: [
+        { name: e.target.value, age: this.state.persons[0].age },
+        { name: this.state.persons[1].name, age: this.state.persons[1].age },
+        { name: this.state.persons[2].name, age: this.state.persons[2].age }
       ]
     })
   }
@@ -25,10 +35,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Primer pagina</h1>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click={this.changeNameHandler.bind(this, 'Ramas', 24)}>Boyfriend: Alejandro </Person>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} change={this.changeNameHandler}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click={this.changePersonsHandler.bind(this, 'Ramas', 24)}>Boyfriend: Alejandro </Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-        <button onClick={() => this.changeNameHandler('Milo', 25)}>changeName</button>
+        <button onClick={() => this.changePersonsHandler('Milo', 25)}>Change Persons</button> {/*Menos eficiente*/}
       </div>
     );
   }
