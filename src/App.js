@@ -5,17 +5,16 @@ import './App.css';
 import Person from './Person/Person';
 
 const StyledButton = styled.button`
-  background-color: green;
+  background-color: ${props => props.alt ? 'red' : 'green'};
   color: white;
   font: inherit;
   padding: 8px;
   cursor: pointer;
 
   &:hover {
-    background-color: lightgreen;
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
     color: black;
   }
-
 `;
 
 class App extends Component {
@@ -84,7 +83,7 @@ class App extends Component {
       <div className="App">
         <h1>First page</h1>
         <p className={classes.join(' ')}>This really works</p>
-        <StyledButton onClick={this.togglePersonsHandler}>Show Persons</StyledButton>
+        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Show Persons</StyledButton>
         {persons}
       </div>
     );
