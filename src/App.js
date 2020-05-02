@@ -17,13 +17,13 @@ class App extends Component {
       return p.id === index
     })
 
-    const person = {...this.state.persons[personIndex]}
+    const person = { ...this.state.persons[personIndex] }
     person.name = e.target.value
-    
+
     const persons = [...this.state.persons]
     persons[personIndex] = person
 
-    this.setState({persons})
+    this.setState({ persons })
   }
 
   deletePersonHandler = (personIndex) => {
@@ -39,9 +39,9 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
-      border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
     }
@@ -62,6 +62,7 @@ class App extends Component {
           })}
         </div>
       )
+      style.backgroundColor = 'red'
     }
 
     return (
