@@ -12,30 +12,24 @@ class App extends Component {
     showPersons: false
   }
 
-  // changePersonsHandler = (friend, age) => {
-  //   this.setState({
-  //     persons: [
-  //       { name: this.state.persons[0].name, age: this.state.persons[0].age },
-  //       { name: this.state.persons[1].name, age: this.state.persons[1].age },
-  //       { name: friend, age }
-  //     ]
-  //   })
-  // }
+  changeNameHandler = (e, index) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === index
+    })
 
-  // changeNameHandler = (e) => {
-  //   this.setState({
-  //     persons: [
-  //       { name: e.target.value, age: this.state.persons[0].age },
-  //       { name: this.state.persons[1].name, age: this.state.persons[1].age },
-  //       { name: this.state.persons[2].name, age: this.state.persons[2].age }
-  //     ]
-  //   })
-  // }
+    const person = {...this.state.persons[personIndex]}
+    person.name = e.target.value
+    
+    const persons = [...this.state.persons]
+    persons[personIndex] = person
+
+    this.setState({persons})
+  }
 
   deletePersonHandler = (personIndex) => {
     const persons = [...this.state.persons]
     persons.splice(personIndex, 1)
-    this.setState({persons})
+    this.setState({ persons })
   }
 
   togglePersonsHandler = () => {
@@ -58,7 +52,13 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, i) => {
-            return <Person key={person.id} click={() => this.deletePersonHandler(i)} name={person.name} age={person.age} />
+            return <Person
+              key={person.id}
+              name={person.name}
+              age={person.age}
+              click={() => this.deletePersonHandler(i)}
+              change={(e) => this.changeNameHandler(e, person.id)}
+            />
           })}
         </div>
       )
