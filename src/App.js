@@ -12,24 +12,30 @@ class App extends Component {
     showPersons: false
   }
 
-  changePersonsHandler = (friend, age) => {
-    this.setState({
-      persons: [
-        { name: this.state.persons[0].name, age: this.state.persons[0].age },
-        { name: this.state.persons[1].name, age: this.state.persons[1].age },
-        { name: friend, age }
-      ]
-    })
-  }
+  // changePersonsHandler = (friend, age) => {
+  //   this.setState({
+  //     persons: [
+  //       { name: this.state.persons[0].name, age: this.state.persons[0].age },
+  //       { name: this.state.persons[1].name, age: this.state.persons[1].age },
+  //       { name: friend, age }
+  //     ]
+  //   })
+  // }
 
-  changeNameHandler = (e) => {
-    this.setState({
-      persons: [
-        { name: e.target.value, age: this.state.persons[0].age },
-        { name: this.state.persons[1].name, age: this.state.persons[1].age },
-        { name: this.state.persons[2].name, age: this.state.persons[2].age }
-      ]
-    })
+  // changeNameHandler = (e) => {
+  //   this.setState({
+  //     persons: [
+  //       { name: e.target.value, age: this.state.persons[0].age },
+  //       { name: this.state.persons[1].name, age: this.state.persons[1].age },
+  //       { name: this.state.persons[2].name, age: this.state.persons[2].age }
+  //     ]
+  //   })
+  // }
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons
+    persons.splice(personIndex, 1)
+    this.setState({persons})
   }
 
   togglePersonsHandler = () => {
@@ -43,16 +49,16 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
+      cursor: 'pointer'
     }
 
     let persons = null;
 
     if (this.state.showPersons) {
-      persons=(
+      persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age}/> 
+          {this.state.persons.map((person, i) => {
+            return <Person click={() => this.deletePersonHandler(i)} name={person.name} age={person.age} />
           })}
         </div>
       )
