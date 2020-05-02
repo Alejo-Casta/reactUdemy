@@ -13,6 +13,14 @@ const StyledDiv = styled.div`
     @media (min-width: 500px) {
         width: 450px;
     }
+
+    button {
+        background-color: white;
+        font: inherit;
+        border: 1px solid blue;
+        padding: 8px;
+        cursor: pointer;
+    }
 `;
 
 const Person = (props) => {
