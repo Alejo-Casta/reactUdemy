@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import styles from './App.module.css';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 
 class App extends Component {
   state = {
@@ -40,7 +40,7 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = '';
+    let btnClass = [styles.button];
 
     if (this.state.showPersons) {
       persons = (
@@ -56,7 +56,7 @@ class App extends Component {
           })}
         </div>
       )
-      btnClass = styles.red
+      btnClass.push(styles.red)
     }
 
     const classes = []
@@ -71,7 +71,7 @@ class App extends Component {
       <div className={styles.App}>
         <h1>First page</h1>
         <p className={classes.join(' ')}>This really works</p>
-        <button className={btnClass} onClick={this.togglePersonsHandler}>Show Persons</button>
+        <button className={btnClass.join(' ')} onClick={this.togglePersonsHandler}>Show Persons</button>
         {persons}
       </div>
     );
