@@ -5,8 +5,17 @@ import styles from './Cockpit.module.css'
 const Cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect')
+        setTimeout(() => {
+            alert('Data send!')
+        }, 1000);
+    }, [props.persons])
 
-    })
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect')
+        setTimeout(() => {
+            alert('First alert!')
+        }, 1000);
+    }, [])
 
     const classes = []
     let btnClass = [styles.button]

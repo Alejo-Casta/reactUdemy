@@ -34,7 +34,7 @@ class App extends Component {
 
   shouldComponentUpdate(prevState, prevProps) {
     console.log('[App.js] shouldComponentUpdate')
-    return false
+    return true
   }
 
   changeNameHandler = (e, index) => {
