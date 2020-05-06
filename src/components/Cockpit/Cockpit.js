@@ -18,7 +18,7 @@ const Cockpit = (props) => {
 
     return (
         <div className=''>
-            <h1>First page</h1>
+            <h1>{props.title}</h1>
             <p className={classes.join(' ')}>This really works</p>
             <button className={btnClass} onClick={props.click}>Show Persons</button>
         </div>
