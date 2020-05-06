@@ -5,6 +5,11 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import styles from './App.module.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor')
+  }
+
   state = {
     persons: [
       { id: 'p1', name: 'Alejandro', age: 24 },
@@ -12,6 +17,15 @@ class App extends Component {
       { id: 'p3', name: 'Teo', age: 24 }
     ],
     showPersons: false
+  }
+
+  static getDerivedStateFromProps(props, state){
+    console.log('[App.js] getDerivedStateFromProps', props)
+    return state
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount')
   }
 
   changeNameHandler = (e, index) => {
@@ -40,6 +54,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render')
     let persons = null;
 
     if (this.state.showPersons) {

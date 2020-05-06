@@ -3,6 +3,7 @@ import React from 'react';
 import Person from './Person/Person'
 
 const Persons = (props) => props.persons.map((person, i) => {
+    console.log('[Persons.js] rendering...')
     return <Person
         key={person.id}
         name={person.name}
